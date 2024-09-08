@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import "reset.scss";
 
 // 요소 사이즈 조절
 @mixin size($width, $height) {
@@ -56,6 +57,28 @@
             @content;
         } 
     }
+}
+
+@font-face {
+    src : url("/font/paperlogy/Paperlogy-4Regular.ttf");
+    font-family: "Paper_R";
+    font-weight: 400;
+}
+
+@font-face {
+    src : url("/font/paperlogy/Paperlogy-5Medium.ttf");
+    font-family: "Paper_M";
+    font-weight: 500;
+}
+
+@font-face {
+    src : url("/font/paperlogy/Paperlogy-7Bold.ttf");
+    font-family: "Paper_B";
+    font-weight: 600;
+}
+
+.is_pointer {
+    cursor: pointer;
 }
 
 :root {

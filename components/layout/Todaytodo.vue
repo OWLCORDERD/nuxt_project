@@ -2,18 +2,17 @@
     <div class="today-todo">
         <div class="today-todo-title">
             <h1>안녕하세요, {{ username }} 님.</h1>
-            <p>오늘 해야 할 필수 체크 리스트입니다.</p>
+            <p>오늘의 일정을 추가하여 관리할 수 있습니다.</p>
         </div>
 
         <div class="today-todo-input">
-            <input type="text" placeholder="일정을 추가해주세요." />
-            <button type="button" title="일정 추가 버튼" class="add_todo is_pointer">추가</button>
+            <input type="text" placeholder="일정을 추가해주세요." v-model="checkText"/>
+            <button type="button" title="일정 추가 버튼" class="add_todo is_pointer" @click="addCheckList">추가</button>
         </div>
         
-        <ul class="check-list" v-for="item in checkList" v-if="checkList.length > 0">
-            <li class="work">
-                <div class="work-check"></div>
-                <span class="work-title">{{ item.text }}</span>
+        <ul class="check-list">
+            <li class="work" v-for="item in checkList" ref="workItem" v-if="checkList.length > 0">
+                <span class="work-title is_pointer" @click="checkToggle(item.id)">{{ item.text }}</span>
             </li>
         </ul>
     </div>
@@ -22,32 +21,55 @@
     import { ref } from "vue";
 
     const username = ref("민혁");
+    const checkText = ref('');
+    const checkStatus = ref(false);
+    const workItem = ref([]);
+    const checkList = ref([]);
+    const newSchedule = ref();
 
-    const checkList = ref([
-        {
-            idx : 1,
-            text : "네이버 웍스 출근 체크"
-        },
-        {
-            idx : 2,
-            text : "레드마인 일감 체크"
-        },
-        {
-            idx : 3,
-            text : "nuxt todoList 프로젝트 git pull"
-        },
-        {
-            idx : 4,
-            text : "공식 홈페이지 결함 및 기타 이슈 확인"
-        },
-        {
-            idx : 5,
-            text : "일일 업무 일지 작성"
-        },
-    ])
+    const { data } = await useFetch('/api/checkList');
+
+    const checkToggle = (id) => {
+        if(workItem.value) {
+            workItem.value[id -  1].classList.toggle("active");
+        }
+        checkStatus.value = !checkStatus.value;
+    }
+
+    const addCheckList = () => {
+        // 디바운스 기법 활용 -> 마지막 검색어 추적
+        setTimeout(() => {
+            const addSchdule = {
+                id : checkList.value.length + 1,
+                text: checkText.value
+            }
+
+            newSchedule.value = addSchdule;
+        }, 500)
+    }
+
+    watch(newSchedule, async() => {
+        if(newSchedule !== undefined) {
+            await useFetch('/api/addSchedule', {
+                method : "POST",
+                body : {
+                    newSchedule: newSchedule.value,
+                },
+            });
+
+            const { data } = await useFetch('/api/checkList');
+
+            checkList.value = data.value;
+            checkText.value = ""
+        }
+    })
+
+    onMounted(() => {
+        checkList.value = data.value;
+    })
+
 </script>
 <style lang="scss" scoped>
-    @import "@/assets/scss/common/_variables";
     .today-todo {
         width: 600px;
         &-title {
@@ -104,18 +126,23 @@
         }
         .check-list {
             width: 100%;
+            height: 100%;
+            padding: 20px 0;
 
             .work {
                 display: flex;
+                align-items: center;
                 width: 100%;
                 height: 56px;
 
-                &-check {
+                &::before {
                     display: block;
+                    content: '';
                     width: 20px;
                     height: 20px;
                     border: 2px solid var(--main_color);
                     margin-right: 20px;
+                    @include transition;
                 }
 
                 &-title {
@@ -123,10 +150,18 @@
                     font-family: "Paper_B";
                     height: 24px;
                     line-height: 24px;
+                }
 
-                    &.active {
+                &.active{
+                    &::before {
+                        background-color: var(--check_color);
+                    }
+
+                    .work {
+                        &-title {
                         color: var(--check_color);
                         text-decoration: line-through;
+                        }
                     }
                 }
             }
