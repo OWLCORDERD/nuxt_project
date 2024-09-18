@@ -7,10 +7,13 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "local": "nuxt dev"
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.2",
+    "@toast-ui/editor": "^3.2.2",
+    "@toast-ui/vue-editor": "^3.2.3",
     "json-server": "^1.0.0-beta.2",
     "module-alias": "^2.2.3",
     "nuxt": "^3.13.0",

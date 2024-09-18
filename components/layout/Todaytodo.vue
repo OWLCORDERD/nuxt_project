@@ -49,7 +49,7 @@
     }
 
     watch(newSchedule, async() => {
-        if(newSchedule !== undefined) {
+        if(newSchedule !== undefined && checkText.value !== "") {
             await useFetch('/api/addSchedule', {
                 method : "POST",
                 body : {
@@ -61,6 +61,9 @@
 
             checkList.value = data.value;
             checkText.value = ""
+        } else {
+            alert("일정을 입력해주세요.");
+            return;
         }
     })
 
