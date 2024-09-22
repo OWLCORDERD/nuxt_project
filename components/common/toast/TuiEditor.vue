@@ -4,16 +4,17 @@
 <script setup>
     const editor = ref();
 
-    const props = defineProps(["defaultOptions"]);
+    // editor setting props
+    const props = defineProps(["editorSettings"]);
 
     onMounted(() => {
         if(editor.value) {
             editor.value = toastEditorInstance(
             editor.value,
-            "wysiwyg",
-            props.defaultOptions,
-            "500px",
-            props.initialValue
+            props.editorSettings.initialEditType,
+            props.editorSettings.defaultOptions,
+            props.editorSettings.height,
+            props.editorSettings.initialValue
         )
         }
     })

@@ -14,12 +14,4 @@ export default defineNuxtConfig({
   },
   // 2024.09.08: 전역에 공통으로 적용할 css 설정
   css: ["assets/styles/common/layout.scss"],
-  nitro: {
-    routeRules: {
-      // toast-ui editor 가 SSR 을 지원하지 않아 reload시 에러가 나는것을 방지
-      "editor/toast": {
-        ssr: false,
-      },
-    },
-  },
 });
