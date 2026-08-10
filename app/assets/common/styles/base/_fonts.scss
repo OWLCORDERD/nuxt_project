@@ -1,0 +1,73 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// @font-face — 로컬 폰트 직접 선언
+// nuxt-font-loader 의존 없이 글로벌 CSS 레벨에서 확실하게 로드
+// 경로 기준: public/ 폴더 (서버 루트)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Pretendard (Variable) ─────────────────────────────────────────────────────
+@font-face {
+  font-family: 'pretendard';
+  src: url('/fonts/pretendard/PretendardVariable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// ── Noto Sans KR ─────────────────────────────────────────────────────────────
+@font-face {
+  font-family: 'NotoSans';
+  src: url('/fonts/notosansKr/NotoSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NotoSans';
+  src: url('/fonts/notosansKr/NotoSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// ── Elice Digital Baeum ───────────────────────────────────────────────────────
+@font-face {
+  font-family: 'EliceDigitalBaeum';
+  src: url('/fonts/elice/EliceDigitalBaeum_Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EliceDigitalBaeum';
+  src: url('/fonts/elice/EliceDigitalBaeum_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// ── Paperlogy ─────────────────────────────────────────────────────────────────
+@font-face {
+  font-family: 'Paperlogy_R';
+  src: url('/fonts/paperlogy/Paperlogy-4Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy_M';
+  src: url('/fonts/paperlogy/Paperlogy-5Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperlogy_B';
+  src: url('/fonts/paperlogy/Paperlogy-7Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

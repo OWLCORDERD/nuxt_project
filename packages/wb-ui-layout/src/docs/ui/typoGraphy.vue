@@ -4,12 +4,12 @@
         <div class="font-card__role">{{ font.role }}</div>
         <div class="font-card__name">{{ font.name }}</div>
         <DOCSUiCodeBadge :text="font.code" />
-        <div
-          :class="'font-card__sample'"
+        <p
+          class="font-card__sample"
           :data-code="font.code"
         >
           {{ font.sample }}
-        </div>
+        </p>
         <div class="font-card__weights">
           <span v-for="w in font.weights" :key="w" class="font-card__weight-chip">{{ w }}</span>
         </div>
@@ -57,7 +57,6 @@ const FONT_CARDS = [
     role: 'Primary — 본문/UI',
     name: 'Pretendard',
     code: '$font-pretendard',
-    // 곡선(a g)과 직선 획 비율이 뚜렷한 Pretendard 특징
     sample: 'Aa Gg 가나다 123',
     weights: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
     mono: false,
@@ -66,7 +65,6 @@ const FONT_CARDS = [
     role: 'Secondary — 보조',
     name: 'Noto Sans KR',
     code: '$font-notosans',
-    // 넓은 자간, 획 균일성이 특징
     sample: 'Aa Gg 가나다 123',
     weights: ['400', '700'],
     mono: false,
@@ -75,7 +73,6 @@ const FONT_CARDS = [
     role: 'Display — 강조',
     name: 'Elice Digital Baeum',
     code: '$font-elicedigitalbaeum',
-    // 둥근 획 끝 처리가 특징
     sample: 'Aa Gg 가나다 123',
     weights: ['400', '700'],
     mono: false,

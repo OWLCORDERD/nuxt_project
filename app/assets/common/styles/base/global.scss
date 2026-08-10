@@ -9,11 +9,12 @@
 // 이 파일은 CSS 규칙을 출력하는 파일만 @use
 // ─────────────────────────────────────────────────────────────────────────────
 
-@use 'tokens' as t;
-@use 'mixins' as m;
-@use 'base';
-@use 'typography';
-@use 'layout';
-@use 'nav';
-@use 'components';
-@use 'docs';
+@use 'tokens' as t; // 디자인 토큰 변수
+@use 'mixins' as m; // 믹스인 함수
+@use 'fonts' as f; // @font-face 선언
+@use 'base'; // 기본 요소 스타일
+@use 'typography'; // 타이포그래피 스타일
+@use 'layout'; // 레이아웃 스타일
+@use 'nav'; // 네비게이션 스타일
+@use 'components'; // 컴포넌트 스타일
+@use 'docs'; // 문서 스타일

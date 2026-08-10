@@ -67,67 +67,6 @@ export default defineNuxtConfig({
     'wb-ui-overlay',
   ],
   modules: ['./modules/overlay-bridge', 'nuxt-font-loader', 'nuxt-svgo'],
-  fontLoader: {
-    local: [
-      {
-        src: '@/assets/common/fonts/Paperlogy-4Regular.ttf',
-        family: 'Paperlogy_R',
-        weight: '400',
-        style: 'normal',
-        display: 'swap'
-      },
-      {
-        src: '@/assets/common/fonts/Paperlogy-5Medium.ttf',
-        family: 'Paperlogy_M',
-        weight: '500',
-        style: 'normal',
-        display: 'swap'
-      },
-      {
-        src: '@/assets/common/fonts/Paperlogy-7Bold.ttf',
-        family: 'Paperlogy_B',
-        weight: '700',
-        style: 'normal',
-        display: 'swap'
-      },
-      {
-        src: '/fonts/elice/EliceDigitalBaeum_Regular.woff',
-        family: 'EliceDigitalBaeum',
-        weight: '400',
-        style: 'normal',
-        display: 'swap',
-        class: 'font-elice-digital-baeum',
-      },
-      {
-        src: '/fonts/elice/EliceDigitalBaeum_Bold.woff',
-        family: 'EliceDigitalBaeum',
-        weight: 'bold',
-        style: 'normal',
-        display: 'swap',
-      },
-      {
-        src: '/fonts/notosansKr/NotoSans-Regular.woff2',
-        family: 'NotoSans',
-        weight: '400',
-        style: 'normal',
-        display: 'swap',
-      },
-      {
-        src: '/fonts/notosansKr/NotoSans-Bold.woff2',
-        family: 'NotoSans',
-        weight: 'bold',
-        style: 'normal',
-        display: 'swap',
-      },
-      {
-        src: '/fonts/pretendard/PretendardVariable.woff2',
-        family: 'pretendard',
-        weight: '100 900',
-        style: 'normal',
-        display: 'swap',
-      },
-    ],
-  },
   // // 2026.07.13 [mhlim]: 외부 패키지 컴포넌트 등록
   // components: [
   //   // 도메인 레이어별 레이아웃 (wb-ui-layout) 컴포넌트 조각 등록
