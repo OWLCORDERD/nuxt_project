@@ -44,8 +44,13 @@ export default defineNuxtConfig({
   vite: {
     css: {
       preprocessorOptions: {
-      scss: {
+        scss: {
           additionalData: '@use "@/assets/common/styles/base/main.scss" as *;',
+          // 레이어 내 SCSS partial에서 @/ alias가 레이어 루트로 해석되는 문제 방지
+          // → loadPaths로 메인 앱 base 스타일 디렉토리를 Sass 검색 경로에 등록
+          loadPaths: [
+            join(process.cwd(), 'app/assets/common/styles/base'),
+          ],
           quietDeps: true,
           silenceDeprecations: ['import', 'legacy-js-api'],
         },
@@ -65,6 +70,7 @@ export default defineNuxtConfig({
   extends: [
     'wb-ui-layout',
     'wb-ui-overlay',
+    './layers/lxp',
   ],
   modules: ['./modules/overlay-bridge', 'nuxt-font-loader', 'nuxt-svgo'],
   // // 2026.07.13 [mhlim]: 외부 패키지 컴포넌트 등록
@@ -78,7 +84,7 @@ export default defineNuxtConfig({
   // ],
   // nuxt-svgo 컴포넌트 autoImport 경로 설정
   svgo: {
-    autoImportPath: '@/assets/lxp/images/svg',
+    autoImportPath: '@/assets/common/images/lxp/svg',
   },
   runtimeConfig: {
     public: {

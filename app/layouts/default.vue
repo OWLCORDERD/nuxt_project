@@ -138,14 +138,14 @@ const topbarMenu = [
   },
   {
     id: 3,
-    label: '공통 컴포넌트',
-    href: '/common-ui',
-    hasData: false,
+    label: '관리자 가이드',
+    href: '/lxp/guide',
+    hasData: true,
   },
   {
     id: 4,
-    label: 'FSD 구조',
-    href: '/fsd-structure',
+    label: '학습자 가이드',
+    href: '/user/guide',
     hasData: false,
   },
 ]

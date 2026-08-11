@@ -50,7 +50,7 @@ export interface imageListItem {
 
 // 2025.05.16 [mhlim]: 프로젝트 svg 이미지들이 저장된 루트 폴더
 const svgFolders = import.meta.glob(
-  '@/assets/lxp/images/svg/*/*.svg',
+  '@/assets/common/images/lxp/svg/*/*.svg',
   {
     eager: true,
   }

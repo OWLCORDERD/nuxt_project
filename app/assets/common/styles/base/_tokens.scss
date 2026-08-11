@@ -132,6 +132,8 @@ $text-subtle:     #a7a7a7;
 $brand:           var(--colorMain);   // #8B5CF6
 $brand-hover:     var(--colorMainDark);   // #7C3AED
 
+$imgLxpUrl: '@/assets/common/images/lxp/svg';
+
 $border-default:  color-mix(in srgb, var(--colorMain) 14%, transparent);
 $border-strong:   color-mix(in srgb, var(--colorMain) 25%, transparent);
 $border-subtle:   color-mix(in srgb, var(--colorMain)  6%, transparent);

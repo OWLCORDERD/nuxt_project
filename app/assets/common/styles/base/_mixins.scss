@@ -127,6 +127,36 @@
   color: $color;
 }
 
+// 말줄임
+@mixin ellipsis {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 말줄임여러줄
+@mixin ellipsis-multi($line-clamp: 2) {
+  display: block;
+  display: -webkit-box;
+  display: -ms-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line-clamp;
+  overflow: hidden;
+  max-width: 100%;
+  word-wrap: break-word;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+}
+
+// float 영역 clear
+@mixin clearAfter {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+
 // 반응형 사이즈
 @mixin responsive($media) {
   $pc: '(min-width: 1025px)';

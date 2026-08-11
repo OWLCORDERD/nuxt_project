@@ -1,42 +1,45 @@
 <template>
-  <div class="guide-layout">
-    <!-- 2025.04.02[ygpark]: scss 포인트컬러 변수 활용을 위한 data-point-theme 추가 -->
-    <div
-      class="wrapper"
-      :style="{
-        '--colorMain': `#${code}`,
-        '--colorMainDark': `${codeDark}`,
-        '--colorMainLight': `${codeLight}`,
-        '--colorMainClear': `${codeClear}`,
-        'font-family': `${font}`,
-      }"
-      :data-point-theme="`point-theme-yellow`"
-      :class="[
-        { 'use-notoSans': font === 'NotoSans' },
-        { 'use-pretendard': font === 'pretendard' },
-        { 'use-elice': font === 'EliceDigitalBaeum' },
-        { 'use-khnpHanulrim': font === 'khnpHanulrim' },
-      ]"
-    >
-      <LxpNavigation
-        :menuList="$menuList"
-        :menu-path="menuPath"
-        @navStateValue="navStateValue"
-      />
-      <div class="container" id="top_container">
-        <!-- 메인 경로 헤더 -->
-        <lxp-header-main v-if="route.path === '/education'" />
-        <!-- 서브 경로 헤더 -->
-        <lxp-header-sub v-else :menu-path="menuPath" />
-        <NuxtPage keepalive :navStateValue="receivedNaviValue" />
-
-        <!-- 오류/개선 등록 버튼 -->
-        <!-- <lxp-feedback-button /> -->
-        <lxp-top-button />
+  <div class="lxp" data-testid="e2e-default-layout-div">
+      <!-- 2025.04.02[ygpark]: scss 포인트컬러 변수 활용을 위한 data-point-theme 추가 -->
+      <div
+        class="wrapper"
+        :style="{
+          '--colorMain': `#${code}`,
+          '--colorMainDark': `${codeDark}`,
+          '--colorMainLight': `${codeLight}`,
+          '--colorMainClear': `${codeClear}`,
+          'font-family': `${font}`,
+        }"
+        :data-point-theme="`point-theme-yellow`"
+        :class="[
+          { 'use-notoSans': font === 'NotoSans' },
+          { 'use-pretendard': font === 'pretendard' },
+          { 'use-elice': font === 'EliceDigitalBaeum' },
+          { 'use-khnpHanulrim': font === 'khnpHanulrim' },
+        ]"
+      >
+        <LXPNavigation
+          :menuList="$menuList"
+          :menu-path="menuPath"
+          @navStateValue="navStateValue"
+          :iconSelector="navMenuIconSelector"
+        />
+        <div class="container" id="top_container">
+          <!-- 메인 경로 헤더 -->
+          <LXPHeaderMain v-if="route.path === '/lxp/guide'" />
+          <!-- 서브 경로 헤더 -->
+          <!-- <LXPHeaderSub v-else :menu-path="menuPath" /> -->
+          <!-- 2026.07.23[mhlim]: SPA 페이지 라우트 이동 로딩 오버레이 컴포넌트 -->
+          <RouteLoadProvider>
+            <NuxtPage keepalive :navStateValue="receivedNaviValue" />
+          </RouteLoadProvider>
+          <!-- 오류/개선 등록 버튼 -->
+          <!-- <lxp-feedback-button /> -->
+          <LXPTopButton />
+        </div>
       </div>
-    </div>
 
-    <toast
+    <V1Toast
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -49,7 +52,7 @@
         { 'use-pretendard': font === 'pretendard' },
       ]"
     />
-    <alert
+    <!-- <V1Alert
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -61,22 +64,9 @@
         { 'use-notoSans': font === 'NotoSans' },
         { 'use-pretendard': font === 'pretendard' },
       ]"
-    />
-    <form-alert
-      :style="{
-        '--colorMain': `#${code}`,
-        '--colorMainDark': `${codeDark}`,
-        '--colorMainLight': `${codeLight}`,
-        '--colorMainClear': `${codeClear}`,
-        'font-family': `${font}`,
-      }"
-      :class="[
-        { 'use-notoSans': font === 'NotoSans' },
-        { 'use-pretendard': font === 'pretendard' },
-      ]"
-    />
+    /> -->
 
-    <confirm
+    <!-- <form-alert
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -88,9 +78,9 @@
         { 'use-notoSans': font === 'NotoSans' },
         { 'use-pretendard': font === 'pretendard' },
       ]"
-    />
+    /> -->
 
-    <layer-popup
+    <V1Confirm
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -104,7 +94,7 @@
       ]"
     />
 
-    <layer-popup-v2
+    <!-- <V1Popup
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -117,11 +107,30 @@
         { 'use-pretendard': font === 'pretendard' },
       ]"
     />
+
+    <V2Popup
+      :style="{
+        '--colorMain': `#${code}`,
+        '--colorMainDark': `${codeDark}`,
+        '--colorMainLight': `${codeLight}`,
+        '--colorMainClear': `${codeClear}`,
+        'font-family': `${font}`,
+      }"
+      :class="[
+        { 'use-notoSans': font === 'NotoSans' },
+        { 'use-pretendard': font === 'pretendard' },
+      ]"
+    /> -->
   </div>
 </template>
 <script setup>
+import RouteLoadProvider from '../components/RouteLoadProvider.vue';
+
 const config = useRuntimeConfig();
 const { $menuList, $navigationReload } = useNuxtApp();
+const { $tab } = useNuxtApp();
+// const { roleId } = $auth;
+const { $bus } = useNuxtApp();
 const router = useRouter();
 const route = useRoute();
 const menuData = ref('');
@@ -325,6 +334,10 @@ watch(
   { deep: true, immediate: true }
 );
 
+// watch(roleId, () => {
+//   menuRefresh();
+// });
+
 const reloadMenu = () => {
   menuRefresh();
 };
@@ -340,6 +353,22 @@ watch(() => route.path, () => {
   immediate: true,
   deep: true,
 });
+
+const ICON_MAP = {
+  'nav-setting':    defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/setting.svg')),
+  'nav-file-pen':   defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/paper-pen.svg')),
+  'nav-pen':        defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/pen-line.svg')),
+  'pencil':         defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/pen-line.svg')),
+  'graduation-cap': defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/open-book.svg')),
+  'file-pencil':    defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/paper-pen.svg')),
+  'book-open':      defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/open-book.svg')),
+  'common-setting': defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/setting.svg')),
+  'category': defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/category.svg')),
+};
+
+const navMenuIconSelector = (iconType) => {
+  return ICON_MAP[iconType] ?? null;
+}
 
 onMounted(async () => {
   window['routerPush'] = (url) => {

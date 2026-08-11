@@ -1,3 +1,5 @@
+import { useWbFetch } from "~~/shared/lib/composables/useWbFetch";
+
 export default defineNuxtPlugin(async (nuxtApp) => {
   const { $auth } = useNuxtApp();
   const route = useRoute();
@@ -7,7 +9,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   const getNavigationMenu = async () => {
     // 2026.02.09 [mhlim]: 비로그인 default 전체 네비게이션 조회 API 경로
-    const endpoint = `${config.public.apiBaseUrl}/api/menuList`;
+    const endpoint = '/api/menuList';
     
     // 2026.02.09 [mhlim]: 로그인 사용자 전용 네비게이션 목록 조회
     if ($auth && $auth.isLogin?.value) {

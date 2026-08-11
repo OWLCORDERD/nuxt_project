@@ -1,5 +1,17 @@
 <template>
     <nav :class="{ 'is-fold': navFold }">
+      <div class="btn-area">
+        <button
+          type="button"
+          class="nav-fold-btn"
+          :class="{ 'is-active': navFold }"
+          @click="navToggle()"
+          title="네비게이션 토글"
+        >
+          <SvgoGNBClose v-if="!navFold" />
+          <SvgoGNBOpen v-else />
+        </button>
+      </div>
       <ul class="nav">
         <template v-for="(depth1, i) in $menuList">
           <li
@@ -13,7 +25,7 @@
               <div class="link" @click="menuToggle('depth1', i)">
                 <!-- 2025.07.16 [mhlim]: 메뉴 아이콘 타입에 따른 svg 아이콘 셀렉터 -->
                 <component
-                  :is="iconSelector(depth1.menuIcon)"
+                  :is="props.iconSelector(depth1.menuIcon)"
                   :class="depth1.menuIcon"
                 />
                 <span class="txt" v-if="!oneDepthNavFold && !navFold">{{
@@ -25,7 +37,7 @@
             <template v-else-if="depth1.menuType === 'PAGE'">
               <nuxt-link :to="depth1.menuUrl" class="link">
                 <component
-                  :is="iconSelector(depth1.menuIcon)"
+                  :is="props.iconSelector?.(depth1.menuIcon)"
                   :class="depth1.menuIcon"
                 />
                 <span class="txt" v-if="!navFold">{{ depth1.menuName }}</span>
@@ -107,48 +119,27 @@
   
       <ul class="setting">
         <li class="setting-item">
-          <NuxtLink :to="goMainPage()"><SvgoGnbHome /></NuxtLink>
+          <NuxtLink :to="goMainPage()">
+            <SvgoGNBHome />
+          </NuxtLink>
         </li>
         <li class="setting-item">
-          <NuxtLink :to="goSettingPage()"><SvgoGnbSetting /></NuxtLink>
+          <NuxtLink :to="goSettingPage()">
+            <SvgoGNBSetting />
+          </NuxtLink>
         </li>
       </ul>
     </nav>
   </template>
   
   <script setup>
-  import Pencil from '@/assets/lxp/images/svg/GNB/nav-pen.svg';
-  import FilePencil from '@/assets/lxp/images/svg/GNB/nav-file-pen.svg';
-  import BookOpen from '@/assets/lxp/images/svg/GNB/nav-book-open.svg';
-  import Setting from '@/assets/lxp/images/svg/GNB/nav-setting.svg';
-  import FileOx from '@/assets/lxp/images/svg/GNB/nav-file-ox.svg';
-  import Board from '@/assets/lxp/images/svg/GNB/nav-bubble-star.svg';
-  import FileLines from '@/assets/lxp/images/svg/GNB/nav-file-lines.svg';
-  import User from '@/assets/lxp/images/svg/GNB/nav-user.svg';
-  import Info from '@/assets/lxp/images/svg/GNB/nav-info.svg';
-  import Book from '@/assets/lxp/images/svg/GNB/nav-book.svg';
-  import Medal from '@/assets/lxp/images/svg/GNB/nav-medal.svg';
-  import Survey from '@/assets/lxp/images/svg/GNB/nav-survey.svg';
-  import Badge from '@/assets/lxp/images/svg/GNB/nav-badge.svg';
-  import Chatbot from '@/assets/lxp/images/svg/GNB/nav-chatbot.svg';
-  import BooksApple from '@/assets/lxp/images/svg/GNB/nav-books-apple.svg';
-  import Bubble2 from '@/assets/lxp/images/svg/GNB/nav-bubble2.svg';
-  import Customer from '@/assets/lxp/images/svg/GNB/nav-customer.svg';
-  import Pay from '@/assets/lxp/images/svg/GNB/nav-pay.svg';
-  import Bell from '@/assets/lxp/images/svg/GNB/nav-bell.svg';
-  import Category from '@/assets/lxp/images/svg/GNB/nav-category.svg';
-  import Bubble1 from '@/assets/lxp/images/svg/GNB/nav-bubble1.svg';
-  import GraphPie from '@/assets/lxp/images/svg/GNB/nav-graph-pie.svg';
-  import HomepageSetting from '@/assets/lxp/images/svg/GNB/nav-homepage-setting.svg';
-  import Star from '@/assets/lxp/images/svg/GNB/nav-star.svg';
-  import Guide from '@/assets/lxp/images/svg/GNB/nav-guide.svg';
-  
   const { $menuList } = useNuxtApp();
   
   const route = useRoute();
   const emit = defineEmits(['menuData', 'navToggle']);
   const props = defineProps({
     menuPath: Array,
+    iconSelector: Function,
   });
   
   const navFold = ref(false);
@@ -192,83 +183,6 @@
   );
   
   // 2025.08.06 [mhlim]: 메뉴 아이콘 타입에 따른 svg 아이콘 셀렉터
-  const iconSelector = (iconType) => {
-    switch (iconType) {
-      case 'nav-info':
-        return Info;
-      case 'nav-book':
-        return Book;
-      case 'nav-user':
-        return User;
-      case 'nav-book-open':
-        return BookOpen;
-      case 'nav-medal':
-        return Medal;
-      case 'nav-survey':
-        return Survey;
-      case 'nav-badge':
-        return Badge;
-      case 'nav-chatbot':
-        return Chatbot;
-      case 'nav-books-apple':
-        return BooksApple;
-      case 'nav-bubble2':
-        return Bubble2;
-      case 'nav-customer':
-        return Customer;
-      case 'nav-bubble-star':
-        return Board;
-      case 'nav-setting':
-        return Setting;
-      case 'nav-pay':
-        return Pay;
-      case 'nav-bell':
-        return Bell;
-      case 'nav-category':
-        return Category;
-      case 'nav-file-lines':
-        return FileLines;
-      case 'nav-bubble1':
-        return Bubble1;
-      case 'nav-graph-pie':
-        return GraphPie;
-      case 'nav-homepage-setting':
-        return HomepageSetting;
-      case 'nav-star':
-        return Star;
-      case 'nav-guide':
-        return Guide;
-      case 'nav-file-ox':
-        return FileOx;
-      case 'nav-file-pen':
-        return FilePencil;
-      case 'nav-pen':
-        return Pencil;
-  
-      // 기존 아이콘 타입 (교육행정통합관리 제외)
-      case 'pencil':
-        return Pencil;
-      case 'graduation-cap':
-        return BookOpen;
-      case 'file-pencil':
-        return FilePencil;
-      case 'book-open':
-        return BookOpen;
-      case 'common-setting':
-        return Setting;
-      case 'file-ox':
-        return FileOx;
-      case 'bubble-star':
-        return Board;
-      case 'file-lines':
-        return FileLines;
-      case 'user':
-        return User;
-  
-      default:
-        return null;
-    }
-  };
   
   // 2025.12.02[mhlim]: 플랫폼에 따른 메인 페이지 이동 경로 셀렉팅
   const goMainPage = () => {
