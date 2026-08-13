@@ -1,43 +1,47 @@
 <template>
   <div class="lxp" data-testid="e2e-default-layout-div">
-      <!-- 2025.04.02[ygpark]: scss 포인트컬러 변수 활용을 위한 data-point-theme 추가 -->
-      <div
-        class="wrapper"
-        :style="{
-          '--colorMain': `#${code}`,
-          '--colorMainDark': `${codeDark}`,
-          '--colorMainLight': `${codeLight}`,
-          '--colorMainClear': `${codeClear}`,
-          'font-family': `${font}`,
-        }"
-        :data-point-theme="`point-theme-yellow`"
-        :class="[
-          { 'use-notoSans': font === 'NotoSans' },
-          { 'use-pretendard': font === 'pretendard' },
-          { 'use-elice': font === 'EliceDigitalBaeum' },
-          { 'use-khnpHanulrim': font === 'khnpHanulrim' },
-        ]"
-      >
-        <LXPNavigation
-          :menuList="$menuList"
+    <!-- 2025.04.02[ygpark]: scss 포인트컬러 변수 활용을 위한 data-point-theme 추가 -->
+    <div
+      class="wrapper"
+      :style="{
+        '--colorMain': `#${code}`,
+        '--colorMainDark': `${codeDark}`,
+        '--colorMainLight': `${codeLight}`,
+        '--colorMainClear': `${codeClear}`,
+        'font-family': `${font}`,
+      }"
+      :data-point-theme="`point-theme-yellow`"
+      :class="[
+        { 'use-notoSans': font === 'NotoSans' },
+        { 'use-pretendard': font === 'pretendard' },
+        { 'use-elice': font === 'EliceDigitalBaeum' },
+        { 'use-khnpHanulrim': font === 'khnpHanulrim' },
+      ]"
+    >
+      <LXPNavigation
+        :menuList="$menuList"
+        :menu-path="menuPath"
+        @navStateValue="navStateValue"
+        :iconSelector="navMenuIconSelector"
+      />
+      <div class="container" id="top_container">
+        <!-- 메인 경로 헤더 -->
+        <LXPHeaderMain v-if="route.path === '/lxp'" />
+        <!-- 서브 경로 헤더 -->
+        <LXPHeaderSub
+          v-else
           :menu-path="menuPath"
-          @navStateValue="navStateValue"
           :iconSelector="navMenuIconSelector"
         />
-        <div class="container" id="top_container">
-          <!-- 메인 경로 헤더 -->
-          <LXPHeaderMain v-if="route.path === '/lxp/guide'" />
-          <!-- 서브 경로 헤더 -->
-          <!-- <LXPHeaderSub v-else :menu-path="menuPath" /> -->
-          <!-- 2026.07.23[mhlim]: SPA 페이지 라우트 이동 로딩 오버레이 컴포넌트 -->
-          <RouteLoadProvider>
-            <NuxtPage keepalive :navStateValue="receivedNaviValue" />
-          </RouteLoadProvider>
-          <!-- 오류/개선 등록 버튼 -->
-          <!-- <lxp-feedback-button /> -->
-          <LXPTopButton />
-        </div>
+        <!-- 2026.07.23[mhlim]: SPA 페이지 라우트 이동 로딩 오버레이 컴포넌트 -->
+        <RouteLoadProvider>
+          <NuxtPage keepalive :navStateValue="receivedNaviValue" />
+        </RouteLoadProvider>
+        <!-- 오류/개선 등록 버튼 -->
+        <!-- <lxp-feedback-button /> -->
+        <LXPTopButton />
       </div>
+    </div>
 
     <V1Toast
       :style="{
@@ -52,7 +56,7 @@
         { 'use-pretendard': font === 'pretendard' },
       ]"
     />
-    <!-- <V1Alert
+    <V1Alert
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -64,7 +68,7 @@
         { 'use-notoSans': font === 'NotoSans' },
         { 'use-pretendard': font === 'pretendard' },
       ]"
-    /> -->
+    />
 
     <!-- <form-alert
       :style="{
@@ -347,28 +351,53 @@ const clearPageCache = (key) => {
 };
 
 // 2026.05.27[mhlim]: 라우트 변경 시, 레이아웃 컨펌 비활성화 처리
-watch(() => route.path, () => {
-  useConfirm().close();
-}, {
-  immediate: true,
-  deep: true,
-});
+watch(
+  () => route.path,
+  () => {
+    useConfirm().close();
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
 
 const ICON_MAP = {
-  'nav-setting':    defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/setting.svg')),
-  'nav-file-pen':   defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/paper-pen.svg')),
-  'nav-pen':        defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/pen-line.svg')),
-  'pencil':         defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/pen-line.svg')),
-  'graduation-cap': defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/open-book.svg')),
-  'file-pencil':    defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/paper-pen.svg')),
-  'book-open':      defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/open-book.svg')),
-  'common-setting': defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/setting.svg')),
-  'category': defineAsyncComponent(() => import('@/assets/common/images/lxp/svg/GNB/category.svg')),
+  'nav-setting': defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/setting.svg')
+  ),
+  'nav-file-pen': defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/paper-pen.svg')
+  ),
+  'nav-pen': defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/pen-line.svg')
+  ),
+  pencil: defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/pen-line.svg')
+  ),
+  'graduation-cap': defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/open-book.svg')
+  ),
+  'file-pencil': defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/paper-pen.svg')
+  ),
+  'book-open': defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/open-book.svg')
+  ),
+  'common-setting': defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/setting.svg')
+  ),
+  category: defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/GNB/category.svg')
+  ),
+  folder: defineAsyncComponent(
+    () => import('@/assets/common/images/lxp/svg/TableDepth/open-folder.svg')
+  ),
 };
 
 const navMenuIconSelector = (iconType) => {
   return ICON_MAP[iconType] ?? null;
-}
+};
 
 onMounted(async () => {
   window['routerPush'] = (url) => {

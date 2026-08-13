@@ -5,7 +5,7 @@
       v-if="toastShow"
       :class="{ kiosk: isKiosk, rookie: isRookie }"
     >
-      <svgo-GNB-info filled />
+      <svgo-GNB-info />
       <p class="txt" v-html="toastText"></p>
     </div>
   </transition>
@@ -25,3 +25,7 @@ const isRookie = computed(() => {
   );
 });
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/modal.scss';
+</style>

@@ -7,10 +7,12 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  // lxp 도메인 레이어 전역 CSS (admin 레이아웃 포함 전체 적용)
+  // lxp 도메인 레이어 전역 CSS 메인 앱 라우터 전역 스타일 경로 연동
   css: [
-    resolve(__dirname, './app/assets/styles/global.scss'),
+    resolve(__dirname, './app/assets/styles/global.scss'), // 전역 CSS
+    resolve(__dirname, '../../app/assets/common/styles/guide/lxp.scss'), // 관리자 가이드 css
   ],
+  // lxp 도메인 레이어 전역 SVG 이미지 경로 연동
   svgo: {
     autoImportPath: resolve(__dirname, '../../app/assets/common/images/lxp/svg'),
   }

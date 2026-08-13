@@ -4,15 +4,19 @@
     <!-- ── Layers & Modules ───────────────────────────────────────────────── -->
       <DOCSSection :sectionId="section">
         <template #heading>
-          <h2 class="section-heading">
+          <div
+            class="section-heading"
+            @click="toggleSection(section)"
+            style="cursor: pointer;"
+          >
             <div class="section-heading__title">
               <span class="section-heading__icon">📂</span>{{ section }}
             </div>
-            <button type="button" aria-label="폴더 드롭다운 컨트롤버튼" class="toggle-btn" @click="toggleSection(section)">
+            <button type="button" aria-label="폴더 드롭다운 컨트롤버튼" class="toggle-btn">
               <svgo-Chevron-down v-if="!svgOpenStates[section]" />
               <svgo-Chevron-up v-else />
             </button>
-          </h2>
+          </div>
         </template>
 
         <template #content>

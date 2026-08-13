@@ -139,7 +139,7 @@ const topbarMenu = [
   {
     id: 3,
     label: '관리자 가이드',
-    href: '/lxp/guide',
+    href: '/lxp',
     hasData: true,
   },
   {

@@ -16,11 +16,11 @@
   border: 1px solid transparent;
   cursor: pointer;
   transition:
-    background    t.$transition-fast,
-    color         t.$transition-fast,
-    border-color  t.$transition-fast,
-    opacity       t.$transition-fast,
-    box-shadow    t.$transition-fast;
+    background t.$transition-fast,
+    color t.$transition-fast,
+    border-color t.$transition-fast,
+    opacity t.$transition-fast,
+    box-shadow t.$transition-fast;
   @include m.focus-ring;
 
   // Sizes
@@ -64,7 +64,9 @@
     background: t.$brand;
     color: #fff;
 
-    &:hover { background: t.$brand-hover; }
+    &:hover {
+      background: t.$brand-hover;
+    }
 
     &:active {
       background: var(--colorMain);
@@ -76,7 +78,9 @@
     background: t.$bg-secondary;
     color: var(--colorMain);
 
-    &:hover { background: lighten(t.$bg-secondary, 4%); }
+    &:hover {
+      background: lighten(t.$bg-secondary, 4%);
+    }
   }
 
   &--outline {
@@ -93,7 +97,9 @@
       color: var(--colorMainDark);
       border-color: rgba(var(--colorMainDark), 0.5);
 
-      &:hover { background: rgba(var(--colorMainDark), 0.15); }
+      &:hover {
+        background: rgba(var(--colorMainDark), 0.15);
+      }
     }
   }
 
@@ -111,14 +117,18 @@
     background: t.$red-500;
     color: #fff;
 
-    &:hover { background: darken(t.$red-500, 8%); }
+    &:hover {
+      background: darken(t.$red-500, 8%);
+    }
 
     &-outline {
       background: transparent;
       color: t.$red-500;
       border-color: rgba(t.$red-500, 0.5);
 
-      &:hover { background: rgba(t.$red-500, 0.08); }
+      &:hover {
+        background: rgba(t.$red-500, 0.08);
+      }
     }
   }
 
@@ -149,15 +159,19 @@
     color: t.$text-muted;
     transition:
       background t.$transition-fast,
-      color      t.$transition-fast;
+      color t.$transition-fast;
 
-    &:hover { color: t.$text-secondary; }
+    &:hover {
+      color: t.$text-secondary;
+    }
 
     &--active {
       background: t.$brand;
       color: #fff;
 
-      &:hover { background: t.$brand-hover; }
+      &:hover {
+        background: t.$brand-hover;
+      }
     }
   }
 }
@@ -176,7 +190,9 @@
     gap: t.$space-3;
     margin-bottom: t.$space-6;
 
-    &:last-child { margin-bottom: 0; }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__label {
@@ -199,10 +215,22 @@
   padding: 3px 10px;
   border-radius: t.$radius-full;
 
-  &--green   { background: rgba(t.$green-500, 0.15); color: t.$green-500; }
-  &--amber   { background: rgba(t.$amber-500, 0.15); color: t.$amber-500; }
-  &--red     { background: rgba(t.$red-500, 0.15);   color: t.$red-500; }
-  &--neutral { background: t.$bg-secondary; color: t.$text-secondary; }
+  &--green {
+    background: rgba(t.$green-500, 0.15);
+    color: t.$green-500;
+  }
+  &--amber {
+    background: rgba(t.$amber-500, 0.15);
+    color: t.$amber-500;
+  }
+  &--red {
+    background: rgba(t.$red-500, 0.15);
+    color: t.$red-500;
+  }
+  &--neutral {
+    background: t.$bg-secondary;
+    color: t.$text-secondary;
+  }
 }
 
 // ── Form inputs ───────────────────────────────────────────────────────────────
@@ -235,9 +263,11 @@
   outline: none;
   transition:
     border-color t.$transition-fast,
-    box-shadow   t.$transition-fast;
+    box-shadow t.$transition-fast;
 
-  &::placeholder { color: t.$text-subtle; }
+  &::placeholder {
+    color: t.$text-subtle;
+  }
 
   &:focus {
     border-color: t.$brand;
@@ -247,7 +277,9 @@
   &--error {
     border-color: rgba(t.$red-500, 0.6);
 
-    &:focus { box-shadow: 0 0 0 3px rgba(t.$red-500, 0.15); }
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(t.$red-500, 0.15);
+    }
   }
 }
 
@@ -329,7 +361,9 @@
     border-color: var(--success-border);
 
     .alert__icon,
-    .alert__label { color: var(--success); }
+    .alert__label {
+      color: var(--success);
+    }
   }
 
   &--info {
@@ -337,7 +371,9 @@
     border-color: var(--info-border);
 
     .alert__icon,
-    .alert__label { color: var(--info); }
+    .alert__label {
+      color: var(--info);
+    }
   }
 
   &--warning {
@@ -345,7 +381,9 @@
     border-color: var(--warning-border);
 
     .alert__icon,
-    .alert__label { color: var(--warning); }
+    .alert__label {
+      color: var(--warning);
+    }
   }
 
   &--error {
@@ -353,67 +391,9 @@
     border-color: var(--error-border);
 
     .alert__icon,
-    .alert__label { color: var(--error); }
-  }
-}
-
-// 토스트 모달
-.toast-modal {
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 43px;
-  min-width: 300px;
-  border-radius: 8px;
-  background: var(--colorMainClear);
-  border: 1px solid var(--colorMain);
-  color: #fff;
-  padding: 10px 30px;
-  line-height: 1.2;
-  box-shadow: 0px 3px 10px 0px rgba(16, 11, 2, 0.08);
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-
-  &.kiosk {
-    background: #2083fe;
-    border: none;
-    padding: 18px 30px;
-    border-radius: 16px;
-
-    .txt {
-      color: #fff;
+    .alert__label {
+      color: var(--error);
     }
-
-    .nuxt-icon {
-      width: 25px;
-      height: 25px;
-      & > path {
-        fill: #fff;
-      }
-    }
-
-    &.rookie {
-      background: #00a800;
-    }
-  }
-
-  .nuxt-icon {
-    margin-bottom: 0;
-    font-size: 16px;
-
-    path {
-      fill: var(--colorMain);
-    }
-  }
-
-  .txt {
-    font-size: var(--font-adm-base);
-    margin-left: 10px;
-    font-weight: bold;
-    color: var(--colorMain);
   }
 }
 
@@ -442,13 +422,17 @@
     background: t.$brand-hover;
     border-color: t.$brand;
 
-    .callout__marker { color: #fff; }
+    .callout__marker {
+      color: #fff;
+    }
   }
 
   &--warning {
     background: rgba(t.$amber-500, 0.06);
     border-color: rgba(t.$amber-500, 0.3);
 
-    .callout__marker { color: t.$amber-500; }
+    .callout__marker {
+      color: t.$amber-500;
+    }
   }
 }

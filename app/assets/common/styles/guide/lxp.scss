@@ -1,0 +1,685 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+// ── 공통 상태 뱃지 ────────────────────────────────────────
+%badge-base {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin: 0 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// 가이드 레이아웃
+.guide {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 32px 80px;
+
+  &:has(.guide-doc) {
+    padding: 2px 0px 80px;
+  }
+
+  .status-badge {
+    @extend %badge-base;
+
+    &--sm {
+      font-size: 10px;
+      padding: 1px 7px;
+    }
+
+    &.is-done {
+      background: #c6f6d5;
+      color: #276749;
+    }
+    &.is-inprogress {
+      background: #e9d8fd;
+      color: #553c9a;
+    }
+    &.is-pending {
+      background: #e2e8f0;
+      color: #718096;
+    }
+  }
+
+  // 가이드 대시보드 페이지
+  &-index {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    // ── 히어로 ──────────────────────────────────────────────
+    &__hero {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    &__hero-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--colorMain, #5b5fc7);
+    }
+
+    &__hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a202c;
+      line-height: 1.3;
+    }
+
+    &__hero-desc {
+      font-size: 15px;
+      color: #718096;
+      line-height: 1.7;
+    }
+
+    // ── 블록 공통 ────────────────────────────────────────────
+    &__block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 0 !important;
+    }
+
+    &__block-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a202c;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    &__block-desc {
+      font-size: 13px;
+      color: #a0aec0;
+      margin-top: -8px;
+    }
+
+    // ── 상태 뱃지 ────────────────────────────────────────────
+    &__status-badge {
+      @extend %badge-base;
+
+      &--sm {
+        font-size: 10px;
+        padding: 1px 7px;
+      }
+
+      &.is-done {
+        background: #c6f6d5;
+        color: #276749;
+      }
+      &.is-inprogress {
+        background: #e9d8fd;
+        color: #553c9a;
+      }
+      &.is-pending {
+        background: #e2e8f0;
+        color: #718096;
+      }
+    }
+
+    // ── 패키지 리스트 ─────────────────────────────────────────
+    &__pkg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__pkg-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    &__pkg-badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2d3748;
+      font-family: 'Fira Code', 'Consolas', monospace;
+      background: #edf2f7;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    &__pkg-desc {
+      font-size: 13px;
+      color: #718096;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    // ── 카드 그리드 ───────────────────────────────────────────
+    &__card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__card {
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      transition:
+        border-color 0.15s,
+        box-shadow 0.15s;
+
+      &:hover:not(.is-disabled) {
+        border-color: var(--colorMain, #5b5fc7);
+        box-shadow: 0 2px 12px 0 rgba(91, 95, 199, 0.1);
+      }
+
+      &.is-disabled {
+        opacity: 0.55;
+        cursor: default;
+      }
+    }
+
+    &__card-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &__card-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2d3748;
+      font-family: 'Fira Code', 'Consolas', monospace;
+    }
+
+    &__card-label {
+      font-size: 11px;
+      color: #a0aec0;
+    }
+
+    &__card-status {
+      @extend %badge-base;
+      font-size: 10px;
+      padding: 1px 7px;
+      margin-top: 8px;
+      align-self: flex-start;
+
+      &.is-done {
+        background: #c6f6d5;
+        color: #276749;
+      }
+      &.is-inprogress {
+        background: #e9d8fd;
+        color: #553c9a;
+      }
+      &.is-pending {
+        background: #e2e8f0;
+        color: #718096;
+      }
+    }
+  }
+
+  // ── 가이드 목차 (TOC) ──────────────────────────────────────────────
+  &-toc {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &__chapter {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    &__chapter-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      background: #f7fafc;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    &__chapter-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2d3748;
+      flex: 1;
+    }
+
+    &__num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--colorMain, #5b5fc7);
+      font-family: 'Fira Code', 'Consolas', monospace;
+      min-width: 42px;
+
+      &--sub {
+        min-width: 42px;
+        color: #718096;
+        font-weight: 600;
+      }
+      &--sub2 {
+        min-width: 52px;
+        color: #a0aec0;
+        font-weight: 500;
+        font-size: 11px;
+      }
+    }
+
+    &__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      &--depth2 {
+        padding-left: 52px;
+        background: #f7fafc;
+      }
+    }
+
+    &__item {
+      border-top: 1px solid #f0f4f8;
+
+      &--depth2 {
+        padding: 10px;
+        border-top: 1px solid #edf2f7;
+      }
+    }
+
+    &__item-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 20px;
+    }
+
+    &__link {
+      flex: 1;
+      font-size: 13px;
+      color: var(--colorMain, #5b5fc7);
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 10px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &__text {
+      flex: 1;
+      font-size: 13px;
+      color: #4a5568;
+      margin-left: 10px;
+    }
+  }
+
+  // 가이드 문서 페이지
+  &-doc {
+    margin: 0 auto;
+    padding: 2px 0px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+
+    // ── 히어로 ────────────────────────────────────────────────
+    &__hero {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    &__hero-meta {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    &__hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      line-height: 1.3;
+    }
+
+    &__hero-desc {
+      display: block;
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.8;
+      margin-top: 20px;
+
+      code {
+        font-family: 'Fira Code', 'Consolas', monospace;
+        font-size: 12px;
+        background: #edf2f7;
+        padding: 1px 6px;
+        border-radius: 4px;
+        color: #553c9a;
+      }
+    }
+
+    &__hero-meta {
+      display: flex;
+      gap: 8px;
+
+      .meta-tag {
+        background: var(--colorMainClear);
+        color: var(--colorMain);
+        border-radius: 100px;
+        padding: 4px 8px;
+        font-size: $font-adm-sm;
+        font-weight: bold;
+      }
+    }
+
+    &__tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: #edf2f7;
+      color: #4a5568;
+
+      &--pkg {
+        background: #ebf4ff;
+        color: #2b6cb0;
+      }
+      &--status {
+        background: #e9d8fd;
+        color: #553c9a;
+      }
+    }
+
+    // ── 섹션 ──────────────────────────────────────────────────
+    &__section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 0 !important;
+    }
+
+    &__section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a202c;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    &__section-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: #718096;
+    }
+
+    &__section-desc {
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.8;
+
+      code {
+        font-family: 'Fira Code', 'Consolas', monospace;
+        font-size: 12px;
+        background: #edf2f7;
+        padding: 1px 6px;
+        border-radius: 4px;
+        color: #553c9a;
+      }
+
+      strong {
+        color: #2d3748;
+        font-weight: 600;
+      }
+    }
+
+    // ── API 테이블 ────────────────────────────────────────────
+    &__api-wrap {
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-x: auto;
+    }
+
+    &__api-label {
+      font-size: 12px;
+      color: #718096;
+      font-weight: 500;
+
+      code {
+        font-family: 'Fira Code', 'Consolas', monospace;
+        font-size: 12px;
+        color: #2d3748;
+      }
+    }
+
+    &__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+
+      th,
+      td {
+        text-align: left;
+        padding: 8px 12px;
+        border-bottom: 1px solid #edf2f7;
+        vertical-align: top;
+      }
+
+      th {
+        font-weight: 600;
+        color: #4a5568;
+        background: #edf2f7;
+      }
+
+      td:first-child {
+        font-family: 'Fira Code', 'Consolas', monospace;
+        color: #553c9a;
+        white-space: nowrap;
+      }
+
+      td:nth-child(2) {
+        font-family: 'Fira Code', 'Consolas', monospace;
+        color: #2b6cb0;
+        white-space: nowrap;
+      }
+    }
+
+    // ── 데모 그리드 ───────────────────────────────────────────
+    &__demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+
+      &--single {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+    }
+
+    &__demo-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    &__demo-card-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__demo-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2d3748;
+      flex: 1;
+    }
+
+    &__demo-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      flex-shrink: 0;
+
+      &--basic {
+        background: #e9d8fd;
+        color: #553c9a;
+      }
+      &--extend {
+        background: #bee3f8;
+        color: #2b6cb0;
+      }
+      &--warning {
+        background: #feebc8;
+        color: #c05621;
+      }
+    }
+
+    &__demo-desc {
+      font-size: 12px;
+      color: #718096;
+      line-height: 1.6;
+    }
+
+    // ── 버튼 ──────────────────────────────────────────────────
+    &__btn-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    &__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      padding: 0 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s;
+
+      &:hover {
+        opacity: 0.85;
+      }
+
+      &--primary {
+        background: var(--colorMain, #5b5fc7);
+        color: #fff;
+      }
+    }
+
+    &__result {
+      font-size: 12px;
+      color: #48bb78;
+      font-weight: 500;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
+    // ── 코드 블록 ─────────────────────────────────────────────
+    &__code {
+      background: #1a202c;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-top: 4px;
+
+      &--block {
+        margin-top: 8px;
+      }
+
+      pre {
+        margin: 0;
+        padding: 14px 16px;
+
+        code {
+          font-family: 'Fira Code', 'Consolas', monospace;
+          font-size: 11.5px;
+          color: #e2e8f0;
+          line-height: 1.7;
+          white-space: pre;
+        }
+      }
+    }
+
+    // ── 콜아웃 ────────────────────────────────────────────────
+    &__callout {
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &--info {
+        background: #ebf8ff;
+        border: 1px solid #bee3f8;
+
+        strong {
+          font-size: 13px;
+          font-weight: 700;
+          color: #2b6cb0;
+        }
+
+        p {
+          font-size: 12px;
+          color: #2c5282;
+          line-height: 1.7;
+
+          code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            background: #bee3f8;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}

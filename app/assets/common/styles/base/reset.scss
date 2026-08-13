@@ -1,0 +1,258 @@
+html,
+body {
+  height: 100%;
+  font-family: 'EliceDigitalBaeum', 'Nanum Gothic', 'dotum', sans-serif;
+
+  font-weight: normal;
+  color: #333;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+body {
+  &:has(.dash-board) {
+    background: #f4f4f4;
+  }
+
+  &.is-fixed {
+    //overflow: hidden;
+  }
+
+  .learner {
+    font-size: var(--font-base);
+  }
+
+  .lxp {
+    font-size: var(--font-adm-base);
+  }
+
+  .tui-grid-context-menu {
+    background: #fff;
+
+    &:hover {
+      background: #F2FDFB;
+    }
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &:after,
+  &:before {
+    box-sizing: border-box;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:focus,
+  &:focus-visible,
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  caption {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+:root {
+  --font-adm-xxxl: 26px;
+  --font-adm-xxl: 22px;
+  --font-adm-xl: 20px;
+  --font-adm-lg: 18px;
+  --font-adm-base: 16px;
+  --font-adm-sm: 14px;
+  --font-adm-xs: 12px;
+
+  --font-xxl: 22px;
+  --font-xl: 20px;
+  --font-lg: 18px;
+  --font-base: 16px;
+  --font-sm: 14px;
+  --font-xs: 12px;
+
+  // 포인트 컬러
+  --colorPoint1: #fd8788;
+  --colorPoint2: #ff3b30;
+  --colorPoint3: #fff9e5;
+  --colorPoint4: #00a9ff;
+  --colorPoint5: #ecf9ff;
+
+  // 대시보드/캘린더 컬러 포인터
+  --colorWheel1: #ea6bd6;
+  --colorWheel2: #7685d7;
+  --colorWheel3: #a072eb;
+  --colorWheel4: #47a1e6;
+  --colorWheel5: #1eb7b9;
+  --colorWheel6: #3da68c;
+  --colorWheel7: #72be48;
+  --colorWheel8: #ffa800;
+  --colorWheel9: #ff8919;
+  --colorWheel10: #fc696a;
+
+  // 신호등 색상
+
+  // 빨간색
+  --redLightTxt: #fc696a;
+  --redLightBg: #fff0f0;
+  // 초록색
+  --greenLightTxt: #3da68c;
+  --greenLightBg: #ebf6f3;
+  // 노란색
+  --orangeLightTxt: #ff8919;
+  --orangeLightBg: #fff3e8;
+  // 회색
+  --grayMidTxt: #666666;
+  --grayLightTxt: #999999;
+  --grayLightBg: #f1f1f1;
+  // 분홍색
+  --pinkLightTxt: #e55ed8;
+  --pinkLightBg: #ffeefd;
+  // 파란색
+  --blueLightTxt: #47a1e6;
+  --blueLightBg: #ecf5fc;
+  --blueNavy: #014099;
+  --blueNavyLight: #EBF7FF;
+  // 보라색
+  --purpleLightTxt: #a072eb;
+  --purpleLightBg: #f6f1fd;
+
+  // 서브 텍스트 색상 컬러
+  --colorText1: #333;
+  --colorText2: #666;
+  --colorText3: #777;
+  --colorText4: #888;
+  --colorText5: #999;
+  --colorText6: #c2c2c2;
+  --colorText7: #ccc;
+  --materialTableText: #252F72;
+
+  // 서브 배경 & 선 색상 컬러
+  --colorBorder1: #c2c2c2;
+  --colorBorder2: #d7d7d7;
+  --colorBorder3: #eaeaea;
+  --colorBorder4: #e7e7e7; //2025.09.08[njLee]
+  --colorBorder5: #eeeeee; //2025.10.17[한수원][shhan]: 그리드 컬럼 가로 경계선
+  --colorBorder6: #666666; //2025.12.05[한수원][kslim]: 버튼 기본 XSmall 강조 테두리 색상
+  --materialTableBorder: #AAB4EE;
+
+  --colorBg1: #f9f9f9; //2025.10.24[한수원][shhan]: 입력폼 라벨 컬러 #f8f8f8 -> #f9f9f9
+  --colorBg2: #d7d7d7;
+  --colorBg3: #ffefee; //2025.09.08[njLee]: 결재회수 버튼 비활성화 색상
+  --colorBg4: #f9f9f9;
+  --colorDisabledBg: #f0f0f0;
+  --materialTableBg: #F9FAFF;
+
+  // 카드형 과정목록 컬러
+  // 파란색 카드
+  --blueCardBg: #ebf7ff;
+  --blueCardBorder: #2494de;
+  // 초록색 카드
+  --greenCardBg: #e9f8ee;
+  --greenCardBorder: #2f9f54;
+  // 보라색 카드
+  --purpleCardBg: #eff4ff;
+  --purpleCardBorder: #8b74d2;
+  // 분홍색 카드
+  --pinkCardBg: #f9f4ff;
+  --pinkCardBorder: #e561b9;
+  // 주황색 카드
+  --orangeCardBg: #fff9e5;
+  --orangeCardBorder: #ff8a41;
+  // 빨간색 카드
+  --redCardBg: #fff6f5;
+  --redCardBorder: #ff5c5c;
+  // 연두색 카드
+  --lightgreenCardBg: #faffe6;
+  --lightgreenCardBorder: #89a800;
+  // 청록색 카드
+  --blueGreenCardBg: #eefffc;
+  --blueGreenCardBorder: #00a897;
+  // 갈색 카드
+  --brownCardBg: #fff6ef;
+  --brownCardBorder: #a47959;
+  // 보라색 카드
+  --violetCardBg: #f4f6ff;
+  --violetCardBorder: #5563c2;
+
+  /* TTM 트리 > 체계별 유형 색상 */
+  --color-comp: #2F9F54;
+  --color-job: #8B74D2;
+  --color-edu: #0E9EA3;
+
+  /* Type Colors */
+  --type-competency: #1abc9c;
+  --type-behavioral-indicator: #16a085;
+  --type-job-family: #e74c3c;
+  --type-job-series: #f39c12;
+  --type-job: #3498db;
+  --type-task: #2ecc71;
+  --type-kst: #9b59b6;
+  --type-course: #d35400;
+  --type-lesson: #e74c3c;
+  --type-learning-object: #c0392b;
+}
+
+@include responsive(tablet) {
+  :root {
+    --font-xxl: 18px;
+    --font-xl: 18px;
+    --font-lg: 16px;
+    --font-base: 13px;
+    --font-sm: 12px;
+    --font-xs: 11px;
+  }
+}

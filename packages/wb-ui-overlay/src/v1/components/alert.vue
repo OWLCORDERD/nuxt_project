@@ -1,12 +1,12 @@
 <template>
   <transition name="fade">
-    <div class="modal" v-if="alertShow" :class="{'is-show': alertShow}">
+    <div class="modal" v-if="alertShow" :class="{ 'is-show': alertShow }">
       <div class="modal-container type02 is-alert">
         <div class="modal-header">
           <button type="button" class="btn-close" @click="close">
-            <SvgoChevronClose/>
+            <SvgoChevronClose />
           </button>
-          <SvgoETCBulb/>
+          <SvgoETCBulb />
           <!-- 2025.09.08[njlee]: 제목이 없는 경우 렌더링 하지 않도록 수정 -->
           <p class="title" v-html="alertTitle" v-if="hasTitle"></p>
           <!-- <p class="title">{{ alertTitle }}</p> -->
@@ -21,7 +21,7 @@
               <li v-for="item in alertSubTexts" :key="item">
                 <div class="border-item">
                   <div class="check-icon">
-                    <svgo-common-check-wheel-icon filled/>
+                    <svgo-common-check-wheel-icon filled />
                   </div>
                   <p v-html="item.text"></p>
                 </div>
@@ -33,7 +33,14 @@
         <div class="modal-footer">
           <div class="btn-wrap">
             <div class="btn-group">
-              <button type="button" title="확인" class="btn-main" @click="close">확인</button>
+              <button
+                type="button"
+                title="확인"
+                class="btn-main"
+                @click="close"
+              >
+                확인
+              </button>
             </div>
           </div>
         </div>
@@ -42,10 +49,17 @@
   </transition>
 </template>
 <script setup>
-const { alertShow, alertTitle, alertText, close, hasTitle,hasBorder,alertSubTexts} = useAlert();
+const {
+  alertShow,
+  alertTitle,
+  alertText,
+  close,
+  hasTitle,
+  hasBorder,
+  alertSubTexts,
+} = useAlert();
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/lxp/components/modal.scss';
-
+@import '../assets/modal.scss';
 </style>

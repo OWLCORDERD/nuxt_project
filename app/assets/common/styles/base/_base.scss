@@ -17,7 +17,9 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: none;
 
-  &::-webkit-scrollbar { display: none; }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 body {
@@ -37,7 +39,9 @@ a {
   color: t.$brand;
   text-decoration: none;
 
-  &:hover { color: var(--colorMain); }
+  &:hover {
+    color: var(--colorMain);
+  }
 }
 
 button {
@@ -59,4 +63,62 @@ img,
 svg {
   display: block;
   max-width: 100%;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:focus,
+  &:focus-visible,
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  caption {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
