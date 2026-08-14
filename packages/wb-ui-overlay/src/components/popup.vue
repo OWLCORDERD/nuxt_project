@@ -84,14 +84,14 @@ import {
   onMounted,
   onUnmounted,
   nextTick,
-  type AsyncComponentLoader,
-  type Component,
-  type FunctionalComponent,
+  ref,
+  computed,
+  watch,
 } from 'vue';
-import { popupRegistry } from '../model/registry';
+import { getPopupEntry } from '../registry';
 import type { PluginOptions } from 'vue3-lottie';
 import { useWindowSize } from '@vueuse/core';
-import { usePopup } from '../model/composables/usePopup';
+import { usePopup } from '../composables/usePopup';
 
 interface InitialPositionSizeType {
   x: number; // 초기 렌더링 x 배치 좌표
@@ -247,12 +247,9 @@ const handleResize = (data: any) => {
   }
 };
 
-// 2026.04.23[mhlim]: 팝업 레지스트리 merge 목록
 // 현재 호출된 식별자의 팝업 레지스트리 조회
 const currentPopupRegistry = computed(() => {
-  return (
-    popupRegistry[popupContentType.value as keyof typeof popupRegistry] ?? null
-  );
+  return getPopupEntry(popupContentType.value) ?? null;
 });
 
 const componentCache = {
@@ -378,9 +375,6 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/user/components/modal.scss';
-@import '@/assets/scss/lxp/components/modal.scss';
-
 :deep(.initial-height.vdr-container) {
   height: initial !important;
 }

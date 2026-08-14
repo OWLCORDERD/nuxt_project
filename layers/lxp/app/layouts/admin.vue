@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <V1Toast
+    <LXPOverlayToast
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -56,35 +56,7 @@
         { 'use-pretendard': font === 'pretendard' },
       ]"
     />
-    <V1Alert
-      :style="{
-        '--colorMain': `#${code}`,
-        '--colorMainDark': `${codeDark}`,
-        '--colorMainLight': `${codeLight}`,
-        '--colorMainClear': `${codeClear}`,
-        'font-family': `${font}`,
-      }"
-      :class="[
-        { 'use-notoSans': font === 'NotoSans' },
-        { 'use-pretendard': font === 'pretendard' },
-      ]"
-    />
-
-    <!-- <form-alert
-      :style="{
-        '--colorMain': `#${code}`,
-        '--colorMainDark': `${codeDark}`,
-        '--colorMainLight': `${codeLight}`,
-        '--colorMainClear': `${codeClear}`,
-        'font-family': `${font}`,
-      }"
-      :class="[
-        { 'use-notoSans': font === 'NotoSans' },
-        { 'use-pretendard': font === 'pretendard' },
-      ]"
-    /> -->
-
-    <V1Confirm
+    <LXPOverlayAlert
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -98,7 +70,7 @@
       ]"
     />
 
-    <!-- <V1Popup
+    <LXPOverlayConfirm
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -112,7 +84,7 @@
       ]"
     />
 
-    <V2Popup
+    <LXPOverlayPopup
       :style="{
         '--colorMain': `#${code}`,
         '--colorMainDark': `${codeDark}`,
@@ -124,7 +96,7 @@
         { 'use-notoSans': font === 'NotoSans' },
         { 'use-pretendard': font === 'pretendard' },
       ]"
-    /> -->
+    />
   </div>
 </template>
 <script setup>
