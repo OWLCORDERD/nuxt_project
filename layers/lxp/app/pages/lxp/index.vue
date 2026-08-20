@@ -197,25 +197,25 @@ const packages: Package[] = [
   {
     name: '@wbsoft/ui-layout',
     description: '관리자 공통 레이아웃을 구성하는 컴포넌트 모음입니다.',
-    status: 'inprogress',
+    status: 'done',
     components: [
       {
-        name: 'Navigation',
+        name: 'GNB',
         label: '좌측 네비게이션',
-        path: '/lxp/guide/overlay',
+        path: '/lxp/guide/layout',
         status: 'done',
       },
       {
         name: 'Header',
         label: '상단 헤더 (메인/서브)',
-        path: '/lxp/guide/overlay',
+        path: '/lxp/guide/layout',
         status: 'done',
       },
       {
         name: 'TopButton',
         label: '상단 이동 버튼',
-        path: '/lxp/guide/overlay',
-        status: 'inprogress',
+        path: '/lxp/guide/layout',
+        status: 'done',
       },
     ],
   },
@@ -223,7 +223,7 @@ const packages: Package[] = [
     name: '@wbsoft/ui-overlay',
     description:
       '얼럿, 컨펌, 팝업, 토스트 등 오버레이 계층에서 동작하는 컴포넌트 모음입니다.',
-    status: 'pending',
+    status: 'done',
     components: [
       {
         name: 'Alert',
@@ -241,13 +241,57 @@ const packages: Package[] = [
         name: 'Popup',
         label: '팝업',
         path: '/lxp/guide/overlay',
-        status: 'inprogress',
+        status: 'done',
       },
       {
         name: 'Toast',
-        label: '토스트',
+        label: '토스트 메시지',
         path: '/lxp/guide/overlay',
         status: 'done',
+      },
+    ],
+  },
+  {
+    name: '@wbsoft/ui-button',
+    description:
+      '계층 구분 기본 버튼부터 아이콘, 텍스트, 탭 버튼 등 다양한 유형의 버튼 공통 컴포넌트 모음입니다.',
+    status: 'inprogress',
+    components: [
+      {
+        name: 'Button',
+        label: '계층 구분 버튼',
+        path: '/lxp/guide/button',
+        status: 'done',
+      },
+      {
+        name: 'TabButton',
+        label: '탭 버튼',
+        path: '/lxp/guide/button',
+        status: 'inprogress',
+      },
+      {
+        name: 'IconButton',
+        label: '아이콘 버튼',
+        path: '/lxp/guide/button',
+        status: 'inprogress',
+      },
+      {
+        name: 'TextButton',
+        label: '텍스트 버튼',
+        path: '/lxp/guide/button',
+        status: 'pending',
+      },
+      {
+        name: 'ChipButton',
+        label: '칩 버튼',
+        path: '/lxp/guide/button',
+        status: 'pending',
+      },
+      {
+        name: 'ToggleButton',
+        label: '토글 버튼',
+        path: '/lxp/guide/button',
+        status: 'pending',
       },
     ],
   },

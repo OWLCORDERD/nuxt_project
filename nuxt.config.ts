@@ -1,5 +1,5 @@
-import { createRequire } from "node:module";
-import { join } from "node:path";
+import { createRequire } from 'node:module';
+import { join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 
@@ -48,9 +48,7 @@ export default defineNuxtConfig({
           additionalData: '@use "@/assets/common/styles/base/main.scss" as *;',
           // 레이어 내 SCSS partial에서 @/ alias가 레이어 루트로 해석되는 문제 방지
           // → loadPaths로 메인 앱 base 스타일 디렉토리를 Sass 검색 경로에 등록
-          loadPaths: [
-            join(process.cwd(), 'app/assets/common/styles/base'),
-          ],
+          loadPaths: [join(process.cwd(), 'app/assets/common/styles/base')],
           quietDeps: true,
           silenceDeprecations: ['import', 'legacy-js-api'],
         },
@@ -67,11 +65,7 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  extends: [
-    'wb-ui-layout',
-    'wb-ui-overlay',
-    './layers/lxp',
-  ],
+  extends: ['wb-ui-layout', 'wb-ui-overlay', 'wb-ui-button', './layers/lxp'],
   modules: ['./modules/overlay-bridge', 'nuxt-font-loader', 'nuxt-svgo'],
   // // 2026.07.13 [mhlim]: 외부 패키지 컴포넌트 등록
   // components: [

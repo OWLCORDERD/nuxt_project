@@ -23,6 +23,7 @@
         :menu-path="menuPath"
         @navStateValue="navStateValue"
         :iconSelector="navMenuIconSelector"
+        :is-searchable="true"
       />
       <div class="container" id="top_container">
         <!-- 메인 경로 헤더 -->

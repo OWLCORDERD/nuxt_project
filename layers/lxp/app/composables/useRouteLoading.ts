@@ -11,8 +11,8 @@ export const useUseKeepAliveLoading = () => {
     if (timerId.value) clearTimeout(timerId.value);
     timerId.value = setTimeout(() => {
       stopLoading();
-    }, 5000)
-  }
+    }, 5000);
+  };
 
   const stopLoading = () => {
     if (timerId.value) {
@@ -22,12 +22,12 @@ export const useUseKeepAliveLoading = () => {
 
     nextTick(() => {
       isLoading.value = false;
-    })
-  }
+    });
+  };
 
   return {
     isLoading,
     startLoading,
     stopLoading,
-  }
-}
+  };
+};

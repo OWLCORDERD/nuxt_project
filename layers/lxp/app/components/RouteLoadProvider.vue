@@ -5,9 +5,7 @@
         <div class="loading-overlay-box">
           <img :src="Logo" alt="LXP 로고" />
           <div class="loading-spinner" />
-          <span class="loading-overlay-text"
-            >페이지를 불러오는 중입니다...</span
-          >
+          <span class="loading-overlay-text">페이지를 불러오는 중입니다</span>
         </div>
       </div>
     </Transition>

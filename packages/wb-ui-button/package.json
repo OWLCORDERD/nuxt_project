@@ -1,0 +1,10 @@
+{
+  "name": "@wbsoft/ui-button",
+  "version": "1.0.0",
+  "description": "사스다 공통 UI 버튼 컴포넌트 패키지",
+  "main": "./src/module.ts",
+  "exports": {
+    ".": "./src/module.ts",
+    "./package.json": "./package.json"
+  }
+}

@@ -6,6 +6,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   const { $bus } = nuxtApp;
   const { $menuList } = useNuxtApp();
 
+  console.log('menuList', $menuList.value);
+
   ['push', 'replace', 'go', 'back', 'forward'].forEach((methodName) => {
     const method = router[methodName];
 
@@ -24,12 +26,16 @@ export default defineNuxtPlugin((nuxtApp) => {
   });
 
   // localStorage로 변경 (SSR-safe)
-  const tabs = useLocalStorage('saas_tab', []);
+  const tabs = useLocalStorage('lxp_tab', []);
 
   // 기존 쿠키 데이터 마이그레이션 (클라이언트에서만)
   if (import.meta.client) {
-    const oldCookie = useCookie('saas_tab');
-    if (oldCookie.value && Array.isArray(oldCookie.value) && oldCookie.value.length > 0) {
+    const oldCookie = useCookie('lxp_tab');
+    if (
+      oldCookie.value &&
+      Array.isArray(oldCookie.value) &&
+      oldCookie.value.length > 0
+    ) {
       if (!tabs.value || tabs.value.length === 0) {
         tabs.value = [...oldCookie.value];
       }
@@ -76,6 +82,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     } else {
       meta = to.path;
     }
+
+    console.log(meta, '메타 데이터');
 
     for (let i = 0; i < tabs.value.length; i++) {
       const tab = tabs.value[i];

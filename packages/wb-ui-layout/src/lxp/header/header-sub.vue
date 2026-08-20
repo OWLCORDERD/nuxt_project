@@ -6,7 +6,7 @@
       </nuxt-link>
     </div>
     <div class="menu">
-      <lxp-header-orgn-role-select />
+      <LXPHeaderOrgnRoleSelect />
 
       <div class="menu-icons">
         <button type="button" class="item">
@@ -17,7 +17,7 @@
   </header>
 
   <ClientOnly>
-    <lxp-today-menu />
+    <LXPTodayMenu />
   </ClientOnly>
 
   <div class="page-title" v-if="!route.path.includes('/ttm/tree')">

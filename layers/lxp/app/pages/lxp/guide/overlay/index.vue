@@ -6,7 +6,7 @@
         <header class="guide-doc__hero">
           <div class="guide-doc__hero-meta">
             <span class="meta-tag">@wbsoft/ui-overlay</span>
-            <span class="status-badge is-inprogress">진행 중</span>
+            <span class="status-badge is-done">완료</span>
           </div>
           <h1 class="guide-doc__hero-title">
             오버레이 가시성 공통 컴포넌트 패키지
@@ -425,7 +425,7 @@ close();</code></pre>
 </template>
 
 <script setup lang="ts">
-definePageMeta({ layout: 'admin' });
+definePageMeta({ layout: 'admin', tab: '/lxp/guide/overlay' });
 
 const { show: showAlert } = useAlert();
 const { show: showConfirm } = useConfirm();
